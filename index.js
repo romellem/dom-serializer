@@ -117,12 +117,18 @@ var render = module.exports = function(dom, opts) {
       output += renderComment(elem);
     else if (elem.type === ElementType.CDATA)
       output += renderCdata(elem);
+    else if (elem.type === ElementType.Raw)
+      output += renderRaw(elem);
     else
       output += renderText(elem, opts);
   }
 
   return output;
 };
+
+function renderRaw(elem) {
+  return elem.data;
+}
 
 function renderTag(elem, opts) {
   // Handle SVG
